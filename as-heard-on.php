@@ -3,7 +3,7 @@
 Plugin Name: As Heard On
 Plugin URI: http://YourWebsiteEngineer.com
 Description: Lets you display album artwork of podcasts you've been a guest on.  Widget included.  Optional link in sidebar block to "view all" podcast images on a page.
-Version: 0.5
+Version: 1.0
 Author: Dustin Hartzler
 Author URI: http://YourWebsiteEngineer.com
 */
@@ -264,7 +264,7 @@ if ( !class_exists('AsHeardOn') ) {
 			    'em' => array(),
 			    'strong' => array()
 			);
-			
+
 			$table_name = $wpdb->prefix . "aho";
 			
 			$testid = $testid;
@@ -778,12 +778,9 @@ $wp_plugin_template = new AsHeardOn();
 			$instance = wp_parse_args((array) $instance, array('title' => __('Hear Me On Other Shows', 'wp-podcast')));
 			$title = esc_attr($instance['title']);
 	?>
-	 
-	 
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'wp-podcast'); ?>
-	<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label>
-	 
-	<input type="hidden" id="<?php echo $this->get_field_id('submit'); ?>" name="<?php echo $this->get_field_name('submit'); ?>" value="1" />
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'wp-podcast'); ?>
+			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label>
+	 		<input type="hidden" id="<?php echo $this->get_field_id('submit'); ?>" name="<?php echo $this->get_field_name('submit'); ?>" value="1" />
 	<?php
 		}
 
