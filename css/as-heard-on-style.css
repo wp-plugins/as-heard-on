@@ -1,4 +1,4 @@
-/* CSS for WP-Testimonials */
+/* CSS for As Heard On */
 #ppg-form label {
 float: left;
 width: 125px;
@@ -9,16 +9,6 @@ div.clear {
     clear:both;
     min-height: 15px;
 }
-
-/*#sfstest-form input {
-width: 250px;
-margin-bottom: 5px;
-border: 1px solid #ccc;
-}*/
-
-/*#sfstest-form br {
-	clear: left;
-}*/
 
 .podcast-display{
 	float: left;
@@ -35,7 +25,7 @@ border: 1px solid #ccc;
 	background: url ('../podcast_icon.png') no-repeat;
 }
 
-.button {
+.aho-button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -53,12 +43,13 @@ border: 1px solid #ccc;
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
-}.button:hover {
+}
+.aho-button:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
 	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
 	background-color:#dfdfdf;
-}.button:active {
+}.aho-button:active {
 	position:relative;
 	top:1px;
 }
