@@ -45,9 +45,22 @@ Here you can select how many images are display and how fast to transition from 
 
 == Screenshots ==
 
-1. Configuration page for album art
+1. Enter the details of your podcast interview
+2. Configure widget settings
+3. Display random album artwork in the sidebar
 
 == ChangeLog ==
+
+= 1.0.3 =
+*	Fixed save buttons to display in WordPress Blue
+*	Added screenshots to WordPress Repository Page
+* 	Fixed broken links to documentation and support pages.
+
+= 1.0.2 = 
+* 	Updated CSS for Widget Button to not conflict with other buttons
+
+= 1.0.1 =
+*	Fixed broken link from settings panel
 
 = 1.0.0 =
 *   First release

@@ -156,7 +156,7 @@ if ( !class_exists('AsHeardOn') ) {
 						<label for="episode">Episode Number:</label><input name="episode" type="text" size="10"><br/>
 						<label for="excerpt">Podcast Excerpt:</label><textarea name="excerpt" cols="45" rows="7"></textarea><br/>
 						<label for="storder">Sort order:</label><input name="storder" type="text" size="10" /> (optional) <br/>
-						<input type="submit" name="addnew" class="aho-aho-button aho-button-primary" value="<?php _e('Add Podcast', 'addnew' ) ?>" /><br/>
+						<input type="submit" name="addnew" class="button button-primary" value="<?php _e('Add Podcast', 'addnew' ) ?>" /><br/>
 					</form>
 				</div>
 			</div>
@@ -351,7 +351,7 @@ if ( !class_exists('AsHeardOn') ) {
 				<div id="message" class="updated fade"><p><strong>Settings Updated</strong></p></div>
 				<?php  } ?>
 
-				<?php echo '<p align="right">Need help? <a href="/' . PLUGINDIR . '/as-heard-on/docs/documentation.php" target="_blank">documentation</a> &nbsp;|&nbsp; <a href="http://#">support page</a></p>'; ?>
+				<?php echo '<p align="right">Need help? <a href="http://wordpress.org/plugins/as-heard-on/" target="_blank">documentation</a> &nbsp;|&nbsp; <a href="http://wordpress.org/support/plugin/as-heard-on" target="_blank">support page</a></p>'; ?>
 				<form method="post" action="options.php">
 				<?php wp_nonce_field('update-options'); ?>
 				<?php settings_fields( 'option-widget' ); ?>
@@ -423,7 +423,7 @@ if ( !class_exists('AsHeardOn') ) {
 			<input type="hidden" name="page_options" value="admng,showlink,linktext,image_width,image_height,opacity,setlimit, linkurl,sfs_sorder,sfs_imgalign,imgmax,deldata" />
 			
 			<p class="submit">
-			<input type="submit" class="aho-button-primary" value="<?php _e('Save Widget Options') ?>" />
+			<input type="submit" class="button button-primary" value="<?php _e('Save Widget Options') ?>" />
 			</p>
 
 			  
@@ -435,7 +435,7 @@ if ( !class_exists('AsHeardOn') ) {
 				<div id="message" class="updated fade"><p><strong>Page Settings Updated</strong></p></div>
 				<?php  } ?>
 
-				<?php echo '<p align="right">Need help? <a href="/' . PLUGINDIR . '/wp-testimonials/docs/documentation.php" target="_blank">documentation</a> &nbsp;|&nbsp; <a href="http://www.sunfrogservices.com/web-programming/wp-testimonials/">support page</a></p>'; ?>
+				<?php echo '<p align="right">Need help? <a href="http://wordpress.org/plugins/as-heard-on/" target="_blank">documentation</a> &nbsp;|&nbsp; <a href="http://wordpress.org/support/plugin/as-heard-on" target="_blank">support page</a></p>'; ?>
 				<form method="post" action="options.php">
 					<?php wp_nonce_field('update-options'); ?>
 					<?php settings_fields( 'option-page' ); ?>
@@ -517,7 +517,7 @@ if ( !class_exists('AsHeardOn') ) {
 			<input type="hidden" name="page_options" value="sorder,aho_imgalign,imgmax,deldata" />
 			
 			<p class="submit">
-			<input type="submit" class="aho-button-primary" value="<?php _e('Save Page Changes') ?>" />
+			<input type="submit" class="button button-primary" value="<?php _e('Save Page Changes') ?>" />
 			</p>
 			
 			</form>
