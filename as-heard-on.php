@@ -57,15 +57,19 @@ if ( !class_exists('AsHeardOn') ) {
 
 
 		function addscripts() { // include style sheet
-		  	 wp_enqueue_style('grayscale_css', plugins_url('/as-heard-on/css/as-heard-on-style.css') );
-		  	 wp_enqueue_style('slider_css', plugins_url('/as-heard-on/css/simple-slider.css') );
-		  	 wp_enqueue_style('volume_css', plugins_url('/as-heard-on/css/simple-slider-volume.css') );
-		  	 wp_enqueue_script( 'jquery' );
-		  	 wp_enqueue_script( 'grayscale', plugins_url('/as-heard-on/js/grayscale.js') ,array('jquery') );
-		  	 wp_enqueue_script( 'slider', plugins_url('/as-heard-on/js/simple-slider.js') ,array('jquery') ); 
-		  	 $params = array('opacity_js' => get_option('opacity') ); 
-		  	 wp_localize_script( 'grayscale', 'grayscale_vars', $params );  
-		  	 wp_enqueue_script( 'display', plugins_url('/as-heard-on/js/display.js') ,array('jquery') );    
+		  	wp_enqueue_style('grayscale_css', plugins_url('/as-heard-on/css/as-heard-on-style.css') );
+		  	wp_enqueue_style('slider_css', plugins_url('/as-heard-on/css/simple-slider.css') );
+		  	wp_enqueue_style('volume_css', plugins_url('/as-heard-on/css/simple-slider-volume.css') );
+		  	wp_enqueue_script( 'jquery' );
+		  	wp_enqueue_script( 'grayscale', plugins_url('/as-heard-on/js/grayscale.js') ,array('jquery') );
+		  	wp_enqueue_script( 'slider', plugins_url('/as-heard-on/js/simple-slider.js') ,array('jquery') ); 
+		  	$params = array('opacity_js' => get_option('opacity') ); 
+		  	wp_localize_script( 'grayscale', 'grayscale_vars', $params );  
+		  	wp_enqueue_script( 'display', plugins_url('/as-heard-on/js/display.js') ,array('jquery') ); 
+		  	wp_enqueue_script('media-upload');
+ 			wp_enqueue_script('thickbox');  
+ 			wp_enqueue_style ('thickbox'); 
+ 			wp_enqueue_script('media-upload-box', plugins_url('/as-heard-on/js/media.js'), array('jquery','media-upload','thickbox'));
 		} 
 	
 // +---------------------------------------------------------------------------+
@@ -74,7 +78,7 @@ if ( !class_exists('AsHeardOn') ) {
 
 		function addpages() { 
 			// Create top-level menu and appropriate sub-level menus:
-			add_menu_page('Other Shows', 'Other Shows', 'manage_options', 'setting_page', array($this, 'settings_pages'), plugins_url('/as-heard-on/podcast_icon.png'));
+			add_menu_page('Other Shows', 'Other Shows', 'manage_options', 'setting_page', array($this, 'settings_pages'), 'dashicons-format-audio');
 		}
 
 
@@ -117,7 +121,7 @@ if ( !class_exists('AsHeardOn') ) {
 				?>
 
 				<h2 class="nav-tab-wrapper">
-					<a href="admin.php?page=setting_page&tab=add_new_podcast" class="nav-tab <?php echo $active_tab == 'add_new_podcast' ? 'nav-tab-active' : ''; ?>">Add New Podcast</a>
+					<a href="admin.php?page=setting_page&tab=add_new_podcast" class="nav-tab <?php echo $active_tab == 'add_new_podcast' ? 'nav-tab-active' : ''; ?>">Podcasts</a>
 					<a href="admin.php?page=setting_page&tab=widget_options" class="nav-tab <?php echo $active_tab == 'widget_options' ? 'nav-tab-active' : ''; ?>">Widget Options</a>
 					<a href="admin.php?page=setting_page&tab=full_page_options" class="nav-tab <?php echo $active_tab == 'full_page_options' ? 'nav-tab-active' : ''; ?>">Full Page Options</a>
 				</h2>
@@ -149,14 +153,46 @@ if ( !class_exists('AsHeardOn') ) {
 				<br />
 				<div id="ppg-form">
 					<form name="AddNew" method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-						<label for="showname">Podcast Name:</label><input name="show_name" type="text" size="45" ><br/>
-						<label for="hostname">Host Name:</label><input name="host_name" type="text" size="45" ><br/>
-						<label for="showurl">Show URL:</label><input name="show_url" type="text" size="45" value="http://" onFocus="this.value=''"><br/>
-						<label for="imgurl">Image URL:</label><input name="imgurl" type="text" size="45" > (copy File URL from <a href="<?php echo admin_url('/upload.php'); ?>" target="_blank">Media</a>) <br/>
-						<label for="episode">Episode Number:</label><input name="episode" type="text" size="10"><br/>
-						<label for="excerpt">Podcast Excerpt:</label><textarea name="excerpt" cols="45" rows="7"></textarea><br/>
-						<label for="storder">Sort order:</label><input name="storder" type="text" size="10" /> (optional) <br/>
-						<input type="submit" name="addnew" class="button button-primary" value="<?php _e('Add Podcast', 'addnew' ) ?>" /><br/>
+						<table cellpadding="0" cellspacing="2">
+							<tr valign="top">
+								<td><label for="showname">Podcast Name:</label></td>
+								<td><input name="show_name" type="text" size="45" ></td>
+							</tr>
+							<tr valign="top">
+								<td><label for="hostname">Host Name:</label></td>
+								<td><input name="host_name" type="text" size="45" ></td>
+							</tr>
+
+							<tr valign="top">
+								<td><label for="showurl">Show URL:</label></td>
+								<td><input name="show_url" type="text" size="45" value="http://" onFocus="this.value=''"></td>
+							</tr>
+
+							<tr valign="top">
+								<td><label for="imgurl">Image URL:</label></td>
+								<td><input name="imgurl" type="text" size="45" ><input class="media-upload-button button" type="button" value="Upload Image" /></td>
+							</tr>
+
+							<tr valign="top">
+								<td><label for="episode">Episode Number:</label></td>
+								<td><input name="episode" type="text" size="5"></td>
+							</tr>
+
+							<tr valign="top">
+								<td><label for="excerpt">Podcast Excerpt:</label></td>
+								<td><textarea name="excerpt" cols="45" rows="7"></textarea></td>
+							</tr>
+
+							<tr valign="top">
+								<td><label for="storder">Sort order:</label></td>
+								<td><input name="storder" type="text" size="10" /> (optional) </td>
+							</tr>
+							<tr valign="top">
+								<td></td>
+								<td><input type="submit" name="addnew" class="button button-primary" value="<?php _e('Add Podcast', 'addnew' ) ?>" /></td>
+							</tr>
+						
+					</table>
 					</form>
 				</div>
 			</div>
@@ -563,35 +599,53 @@ if ( !class_exists('AsHeardOn') ) {
 			global $wpdb;
 			$table_name = $wpdb->prefix . "aho";
 			
-			$getaho = $wpdb->get_row("SELECT testid, show_name, host_name, show_url, imgurl, episode, excerpt, storder FROM $table_name WHERE testid = $testid");
+			$getaho = $wpdb->get_row("SELECT testid, show_name, host_name, show_url, imgurl, episode, excerpt, storder FROM $table_name WHERE testid = $testid"); ?>
 			
-			echo '<h3>Edit Podcast</h3>';
+			<h3>Edit Podcast</h3
+			<div id="ppg-form">
+				<form name="edittst" method="post" action="admin.php?page=setting_page">
+					<table cellpadding="2" cellspacing="2">
+						<tr valign="top">	
+							<td><label for="show_name">Show Name:</label></td>
+				  			<td><input name="show_name" type="text" size="45" value="<?php echo stripslashes($getaho->show_name)?>"></td>
+				  		</tr>
+				  		<tr valign="top">
+							<td><label for="host_name">Host Name:</label></td>
+				  			<td><input name="host_name" type="text" size="45" value="<?php echo stripslashes($getaho->host_name)?>"></td>
+						</tr>
 
-			echo '<div id="ppg-form">';
-			echo '<form name="edittst" method="post" action="admin.php?page=setting_page">';
-			echo '<label for="show_name">Show Name:</label>
-				  <input name="show_name" type="text" size="45" value="'.stripslashes($getaho->show_name).'"><br/>
-					<label for="host_name">Host Name:</label>
-				  	<input name="host_name" type="text" size="45" value="'.stripslashes($getaho->host_name).'"><br/>
+						<tr valign="top">
+							<td><label for="show_url">Show URL:</label></td>
+				 			<td><input name="show_url" type="text" size="45" value="<?php echo $getaho->show_url ?>"></td>
+				 		</tr>
 				
-					<label for="show_url">Show URL:</label>
-				 	<input name="show_url" type="text" size="45" value="'.$getaho->show_url.'"><br/>
-				
-					<label for="imgurl">Image URL:</label>
-					<input name="imgurl" type="text" size="45" value="'.$getaho->imgurl.'"> (copy File URL from <a href="'.admin_url('/upload.php').'" target="_blank">Media</a>) <br/>
-					
-					<label for="episode">Episode:</label>
-				 	<input name="episode" type="text" size="2" value="'.$getaho->episode.'"><br/>
+						<tr valign="top">
+							<td><label for="imgurl">Image URL:</label></td>
+							<td><input name="imgurl" type="text" size="45" value="<?php echo $getaho->imgurl ?>"><input class="media-upload-button button" type="button" value="Upload Image" /></td>
+						</tr>
+						
+						<tr valign="top">
+							<td><label for="episode">Episode:</label></td>
+				 			<td><input name="episode" type="text" size="2" value="<?php echo $getaho->episode ?>"></td>
+				 		</tr>
 
-				 	<label for="excerpt">Show Recap:</label>
-				  	<textarea name="excerpt" cols="45" rows="7">'.stripslashes($getaho->excerpt).'</textarea><br/>
+				 		<tr valign="top">
+				 			<td><label for="excerpt">Show Recap:</label></td>
+				  			<td><textarea name="excerpt" cols="45" rows="7"><?php echo stripslashes($getaho->excerpt) ?></textarea></td>
+				  		</tr>
 
-					<label for="storder">Sort order:</label>
-				 	<input name="storder" type="text" size=2" value="'.$getaho->storder.'">(optional)<br/>
+				  		<tr valign="top">
+							<td><label for="storder">Sort order:</label></td>
+				 			<td><input name="storder" type="text" size="2" value="<?php echo $getaho->storder ?>">(optional)</td>
+				 		</tr>
 
-				  	<input type="hidden" name="testid" value="'.$getaho->testid.'">
-				  	<input name="editdo" type="submit" class="button button-primary" value="Update">';
-			echo '<h3>Preview</h3>';
+				 		<tr valign="top">
+				  			<td><input type="hidden" name="testid" value="<?php $getaho->testid ?>"></td>
+				  			<td><input name="editdo" type="submit" class="button button-primary" value="Update"></td>
+				  		</tr>
+				  	</table>
+
+			<?php echo '<h3>Preview</h3>';
 			echo '<div class="podcast-display" >';
 			echo '<img src="'.$getaho->imgurl.'" width="90px" class="alignleft" style="margin:0 10px 10px 0;">';
 				echo '<strong>Show Name: </strong>';
@@ -787,13 +841,13 @@ if(class_exists('AsHeardOn')) {
 			} else {
 				$setlimit = get_option('setlimit');
 			}
-			$randone = $wpdb->get_results("SELECT show_url, episode, imgurl FROM $table_name WHERE show_url !='' order by RAND() LIMIT $setlimit");
+			$randone = $wpdb->get_results("SELECT show_name, show_url, episode, imgurl FROM $table_name WHERE show_url !='' order by RAND() LIMIT $setlimit");
 
 			echo '<div id="sfstest-sidebar">';
 			
 			foreach ($randone as $randone2) {
 				echo '<div class="item-gray">';
-				echo '<a href="'.nl2br(stripslashes($randone2->show_url)).'" target="_blank"><img src="'.$randone2->imgurl.'" width="'.get_option('image_width').'" height="'.get_option('image_height').'" style="margin-right:10px;"></a>';
+				echo '<a href="'.nl2br(stripslashes($randone2->show_url)).'" target="_blank"><img title="'.$randone2->show_name.'"src="'.$randone2->imgurl.'" width="'.get_option('image_width').'" height="'.get_option('image_height').'" style="margin-right:10px;"></a>';
 				echo '</div>';
 			} // end loop
 			$showlink = get_option('showlink');
