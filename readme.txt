@@ -3,7 +3,7 @@ Contributors: DustinHartzler
 Donate Link: http://YourWebsiteEngineer.com/donate
 Tags: WordPress, widget, pages, podcasts, as heard on
 Requires at least: 3.5
-Tested up to: 3.6
+Tested up to: 3.8.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,10 @@ Here you can select how many images are display and how fast to transition from 
 3. Display random album artwork in the sidebar
 
 == ChangeLog ==
+
+= 1.0.6 =
+*   Fixed bug that caused the "Edit Podcast" to not save updated values
+*   Added a word break so extremely long URL's look nice in the Dashboard
 
 = 1.0.5 =
 *	Added Title Tags to Album Art in Widgets
