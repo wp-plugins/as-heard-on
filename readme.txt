@@ -50,10 +50,8 @@ Here you can select how many images are display and how fast to transition from 
 3. Display random album artwork in the sidebar
 
 == ChangeLog ==
-= 1.1.1 =
-* 	Updated version number so plugin would auto-update
 
-= 1.1 =
+= 1.10 =
 * 	New menu icon
 *	Added plugin icon for repository
 *	Compatible with WordPress 4.0
