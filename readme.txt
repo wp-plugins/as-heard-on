@@ -4,7 +4,7 @@ Donate Link: http://YourWebsiteEngineer.com/donate
 Tags: WordPress, widget, pages, podcasts, as heard on
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,8 @@ Here you can select how many images are display and how fast to transition from 
 3. Display random album artwork in the sidebar
 
 == ChangeLog ==
+= 1.1.1 =
+* 	Updated version number so plugin would auto-update
 
 = 1.1 =
 * 	New menu icon
